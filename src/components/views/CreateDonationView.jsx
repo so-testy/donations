@@ -4,12 +4,15 @@ import {
     Card,
     PanelHeader,
     PanelHeaderBack,
-    Div,
-    Title,
     Cell,
     CardGrid,
     Headline,
+    Div,
 } from '@vkontakte/vkui';
+
+import Icon28CalendarOutline from '@vkontakte/icons/dist/28/calendar_outline';
+import Icon24ChevronRight from '@vkontakte/icons/dist/24/chevron_right';
+import Icon28TargetOutline from '@vkontakte/icons/dist/28/target_outline';
 
 import NavigationContext from '../../NavigationContext';
 
@@ -18,6 +21,16 @@ const styles = {
         border: '0.33px solid rgba(0, 0, 0, 0.08)',
     },
 };
+
+const DonationCell = ({ description, title, icon }) => (
+    <Cell
+        description={description}
+        asideContent={<Icon24ChevronRight />}
+        before={icon}
+    >
+        <Headline weight="medium">{title}</Headline>
+    </Cell>
+);
 
 const CreateDonationView = () => {
     const { setActiveView, views } = useContext(NavigationContext);
@@ -34,15 +47,18 @@ const CreateDonationView = () => {
             </PanelHeader>
             <CardGrid>
                 <Card mode="tint" size="l" style={styles.card}>
-                    <Cell description="Когда есть определённая цель">
-                        <Headline>Целевой сбор</Headline>
-                    </Cell>
+                    <DonationCell
+                        description="Когда есть определённая цель"
+                        title="Целевой сбор"
+                        icon={<Icon28TargetOutline />}
+                    />
                 </Card>
-
                 <Card mode="tint" size="l" style={styles.card}>
-                    <Cell description="Если помощь нужна ежемесячно">
-                        <Headline>Регулярный сбор</Headline>
-                    </Cell>
+                    <DonationCell
+                        description="Если помощь нужна ежемесячно"
+                        title="Регулярный сбор"
+                        icon={<Icon28CalendarOutline />}
+                    />
                 </Card>
             </CardGrid>
         </>
