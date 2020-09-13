@@ -43,8 +43,8 @@ function App() {
         { view: activeView, panel: activePanel },
         setActiveNavigation,
     ] = useState({
-        view: views.donations.name,
-        panel: views.donations.panels.donationsPage,
+        view: views.createDonation.name,
+        panel: views.createDonation.panels.publishDonationToFeed,
     });
 
     const [appState, setAppState] = useState({});
@@ -112,19 +112,11 @@ function App() {
                         >
                             <PublishDonationToFeedView />
                         </Panel>
-                        <Panel
-                            id={
-                                views.createDonation.panels
-                                    .donationInFeed
-                            }
-                        >
+                        <Panel id={views.createDonation.panels.donationInFeed}>
                             <DonationInFeedView />
                         </Panel>
                         <Panel
-                            id={
-                                views.createDonation.panels
-                                    .donationDescription
-                            }
+                            id={views.createDonation.panels.donationDescription}
                         >
                             <DonationDescriptionView />
                         </Panel>

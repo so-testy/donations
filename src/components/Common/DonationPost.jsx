@@ -10,6 +10,7 @@ import {
     Button,
     InfoRow,
     Progress,
+    Separator,
 } from '@vkontakte/vkui';
 
 import Icon24MoreHorizontal from '@vkontakte/icons/dist/24/more_horizontal';
@@ -49,89 +50,92 @@ const DonationPost = ({
                     <Text>{userMessage}</Text>
                 </Div>
             )}
-            <Card
-                style={{
-                    marginLeft: 10,
-                    marginRight: 10,
-                    overflow: 'hidden',
-                }}
-                size="s"
-                mode="outline"
-            >
-                <img
-                    style={{
-                        width: '100%',
-                    }}
-                    alt="shelter"
-                    src={image}
-                />
-                <Group>
-                    <Text
+            <Div>
+                <Card style={{ overflow: 'hidden' }} size="s" mode="outline">
+                    <img
                         style={{
-                            fontSize: 16,
-                            marginLeft: 10,
-                            marginTop: 5,
+                            width: '100%',
                         }}
-                        weight={'semibold'}
+                        alt="shelter"
+                        src={image}
+                    />
+                    <Group
+                        style={{ margin: '0 16px 8px 16px' }}
+                        separator="hide"
                     >
-                        {title}
-                    </Text>
-                    <Text
+                        <Text
+                            style={{
+                                fontSize: 16,
+                                marginTop: 4,
+                            }}
+                            weight={'semibold'}
+                        >
+                            {title}
+                        </Text>
+                        <Text
+                            style={{
+                                fontSize: 14,
+                                color: 'var(--text_secondary)',
+                            }}
+                        >
+                            {author} ·{' '}
+                            {isSubscribe
+                                ? 'Помощь нужна каждый месяц'
+                                : `Закончится через ${Math.floor(
+                                      (date.getTime() - Date.now()) /
+                                          (1000 * 60 * 60 * 24),
+                                  )} дней`}
+                        </Text>
+                    </Group>
+                    <Separator style={{ margin: '8px 0 10px 0' }} />
+                    <Group
                         style={{
-                            fontSize: 14,
-                            marginLeft: 10,
-                            color: 'var(--text_secondary)',
-                        }}
-                    >
-                        {author} ·{' '}
-                        {isSubscribe
-                            ? 'Помощь нужна каждый месяц'
-                            : `Закончится через ${Math.floor(
-                                  (date.getTime() - Date.now()) /
-                                      (1000 * 60 * 60 * 24),
-                              )} дней`}
-                    </Text>
-                </Group>
-                <Group
-                    style={{
-                        display: 'grid',
-                        alignItems: 'center',
-                        gridTemplateColumns: 'auto 90px',
-                        gridGap: '20px',
-                    }}
-                >
-                    <InfoRow
-                        style={{
-                            margin: '10px 0px 15px 15px',
-                        }}
-                        header={
-                            <Text
-                                style={{
-                                    fontSize: 13,
-                                    color: 'var(--text_primary)',
-                                    marginBottom: 5,
-                                }}
-                            >
-                                {progressTitle}
-                            </Text>
-                        }
-                    >
-                        <Progress disabled={disabled} value={progressPercent} />
-                    </InfoRow>
-                    <Button
-                        style={{
-                            marginRight: 15,
-                        }}
-                        mode={'outline'}
-                        disabled={disabled}
-                        onClick={() => {
-                            clickHandler();
+                            display: 'grid',
+                            alignItems: 'center',
+                            gridTemplateColumns: 'auto 90px',
+                            gridGap: '20px',
+                            padding: '0 16px 16px 16px',
                         }}
                     >
-                        Помочь
-                    </Button>
-                </Group>
-            </Card>
+                        <InfoRow
+                            style={{
+                                // margin: '10px 0px 15px 15px',
+                                marginTop: 0,
+                            }}
+                            header={
+                                <Text
+                                    style={{
+                                        fontSize: 13,
+                                        color: 'var(--text_primary)',
+                                        marginBottom: 5,
+                                    }}
+                                >
+                                    {progressTitle}
+                                </Text>
+                            }
+                        >
+                            <Progress
+                                disabled={disabled}
+                                value={progressPercent}
+                            />
+                        </InfoRow>
+                        <Button
+                            style={
+                                {
+                                    // marginRight: 15,
+                                }
+                            }
+                            mode={'outline'}
+                            disabled={disabled}
+                            onClick={() => {
+                                clickHandler();
+                            }}
+                        >
+                            Помочь
+                        </Button>
+                    </Group>
+                </Card>
+            </Div>
         </>
     );
 };
