@@ -7,7 +7,7 @@ import DonationsPageView from './components/views/DonationsPageView';
 import CreateDonationView from './components/views/CreateDonationView';
 
 function App() {
-    const [activeView, setActiveView] = useState('donations');
+    const [activeView, setActiveView] = useState('create-donation');
 
     const views = {
         donations: 'donations',
@@ -23,13 +23,16 @@ function App() {
             }}
         >
             <Root activeView={activeView}>
-                <View id="donations" activePanel="donations-page">
+                <View id={views.donations} activePanel="donations-page">
                     <Panel id="donations-page" centered>
                         <DonationsPageView />
                     </Panel>
                 </View>
-                <View id="create-donation" activePanel="create-donation-page">
-                    <Panel id="create-donation-page">
+                <View
+                    id={views.createDonation}
+                    activePanel="create-donation-page"
+                >
+                    <Panel id="create-donation-page" centered>
                         <CreateDonationView />
                     </Panel>
                 </View>
