@@ -1,21 +1,19 @@
-import React, { useCallback, useContext } from 'react';
+import React, { useCallback, useContext } from "react";
 
 import {
     Card,
     PanelHeader,
     PanelHeaderBack,
-    Div,
-    Title,
     Cell,
     CardGrid,
     Headline,
-} from '@vkontakte/vkui';
+} from "@vkontakte/vkui";
 
-import NavigationContext from '../../NavigationContext';
+import NavigationContext from "../../NavigationContext";
 
 const styles = {
     card: {
-        border: '0.33px solid rgba(0, 0, 0, 0.08)',
+        border: "0.33px solid rgba(0, 0, 0, 0.08)",
     },
 };
 
@@ -24,7 +22,7 @@ const CreateDonationView = () => {
 
     const goToDonationsPage = useCallback(
         () => setActiveView(views.donations),
-        [setActiveView, views],
+        [setActiveView, views]
     );
 
     return (
