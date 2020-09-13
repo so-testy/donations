@@ -13,7 +13,9 @@ import CreateRegularDonationFormView from './components/views/CreateRegularDonat
 import StorageContext from './StorageContext';
 
 import DonationInFeedView from './components/views/DonationInFeedView';
+
 import PublishDonationToFeedView from './components/views/PublishDonationToFeedView';
+
 import DonationDescriptionView from './components/views/DonationDescriptionView';
 
 const views = {

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import { Text, SimpleCell } from "@vkontakte/vkui";
 
@@ -13,6 +13,10 @@ import Icon28View from "@vkontakte/icons/dist/24/view";
 import DonationPost from "../Common/DonationPost";
 
 const DonationInFeedView = () => {
+    const [donation, setDonation] = useState(
+        JSON.parse(localStorage.getItem("appState")).donationList[0] || {}
+    );
+
     const { views } = useContext(NavigationContext);
     const { navigate: gotoDescription } = useNavigation(
         views.donationDescription
@@ -23,16 +27,21 @@ const DonationInFeedView = () => {
             <DonationPost
                 disabled={false}
                 clickHandler={gotoDescription}
-                progressPercent={87.5}
-                progressTitle={"Собрано 8 750 ₽ из 10 000 ₽"}
-                userMessage={
-                    "Сейчас самое время помочь тем, кто не может попросить о помощи сам."
+                progressPercent={50}
+                progressTitle={
+                    !donation.isSubscribe
+                        ? `Собрано ${donation.amount / 2} ₽ из ${
+                              donation.amount
+                          } ₽`
+                        : `Собрано ${donation.amount / 2} ₽ в сентябре`
                 }
-                title={"Добряши помогают щенкам"}
+                userMessage={donation.message}
+                title={donation.donationName}
                 author={"Матвей Правосудов"}
-                date={new Date(2020, 9, 30)}
-                isSubscribe={false}
+                date={new Date(donation.payDate)}
+                isSubscribe={donation.isSubscribe}
                 image={"/shelter.jpg"}
+                isHiddenAuthorMessage={false}
             />
             <div
                 style={{

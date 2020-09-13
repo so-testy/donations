@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext } from "react";
 
-import NavigationContext from '../../NavigationContext';
-import useNavigation from '../../hooks/useNavigation';
-import BaseCreateDonationForm from '../forms/BaseCreateDonationForm';
-import FormStepper from '../forms/FormStepper/FormStepper';
-import FormStep from '../forms/FormStepper/FormStep';
-import TargetDonationAdditionalForm from '../forms/TargetDonationAdditionalForm';
-import StorageContext from '../../StorageContext';
+import NavigationContext from "../../NavigationContext";
+import useNavigation from "../../hooks/useNavigation";
+import BaseCreateDonationForm from "../forms/BaseCreateDonationForm";
+import FormStepper from "../forms/FormStepper/FormStepper";
+import FormStep from "../forms/FormStepper/FormStep";
+import TargetDonationAdditionalForm from "../forms/TargetDonationAdditionalForm";
+import StorageContext from "../../StorageContext";
 
 const CreateDonationFormView = () => {
     const { views } = useContext(NavigationContext);
@@ -14,10 +14,15 @@ const CreateDonationFormView = () => {
 
     const { navigate: goToChooseDonationsPage } = useNavigation(
         views.createDonation.name,
-        views.createDonation.panels.chooseDonationPage,
+        views.createDonation.panels.chooseDonationPage
     );
 
-    const submit = async values => {
+    const { navigate: goToPublichPage } = useNavigation(
+        views.publishDonationToFeed
+    );
+
+    const submit = async (values) => {
+        goToPublichPage();
         setState({
             donationList: [values],
         });
