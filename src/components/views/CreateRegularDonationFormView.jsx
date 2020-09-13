@@ -1,16 +1,13 @@
 import React, { useCallback, useContext, useState } from 'react';
 
-import {
-    PanelHeader,
-    PanelHeaderBack,
-    FormLayoutGroup,
-    Select,
-} from '@vkontakte/vkui';
+import { FormLayoutGroup } from '@vkontakte/vkui';
 
 import NavigationContext from '../../NavigationContext';
 import useNavigate from '../../hooks/useNavigate';
 import BaseCreateDonationForm from '../forms/BaseCreateDonationForm';
 import SelectAuthorField from '../ui/SelectAuthorField';
+import FormStepper from '../forms/FormStepper/FormStepper';
+import FormStep from '../forms/FormStepper/FormStep';
 
 const CreateRegularDonationFormView = () => {
     const { views } = useContext(NavigationContext);
@@ -22,16 +19,18 @@ const CreateRegularDonationFormView = () => {
 
     return (
         <>
-            <PanelHeader
-                left={<PanelHeaderBack onClick={goToChooseDonationsPage} />}
+            <FormStepper
+                onBack={goToChooseDonationsPage}
+                viewId="donation-form"
             >
-                Регулярный сбор
-            </PanelHeader>
-            <BaseCreateDonationForm t={{ amount: 'Сумма в месяц, ₽' }}>
-                <FormLayoutGroup top="Куда получать деньги">
-                    <SelectAuthorField />
-                </FormLayoutGroup>
-            </BaseCreateDonationForm>
+                <FormStep title="Регулярный сбор">
+                    <BaseCreateDonationForm t={{ amount: 'Сумма в месяц, ₽' }}>
+                        <FormLayoutGroup top="Автор">
+                            <SelectAuthorField />
+                        </FormLayoutGroup>
+                    </BaseCreateDonationForm>
+                </FormStep>
+            </FormStepper>
         </>
     );
 };

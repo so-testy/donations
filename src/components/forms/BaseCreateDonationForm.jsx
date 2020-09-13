@@ -23,7 +23,7 @@ const styles = {
     },
 };
 
-const BaseCreateDonationForm = ({ children, t = {} }) => {
+const BaseCreateDonationForm = ({ children, submitButton, t = {} }) => {
     const [coverPreview, setCoverPreview] = useState(null);
 
     const paymentOptions = [{ value: 'vkpay', title: 'Счёт VK Pay · 1234' }];
@@ -95,12 +95,14 @@ const BaseCreateDonationForm = ({ children, t = {} }) => {
             <FormLayoutGroup top="Куда получать деньги">
                 <Select>
                     {paymentOptions.map(option => (
-                        <option value={option.value}>{option.title}</option>
+                        <option key={option.value} value={option.value}>
+                            {option.title}
+                        </option>
                     ))}
                 </Select>
             </FormLayoutGroup>
             {children}
-            <Button size="xl">Создать сбор</Button>
+            {submitButton}
         </FormLayout>
     );
 };

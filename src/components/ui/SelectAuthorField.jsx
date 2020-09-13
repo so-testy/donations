@@ -13,7 +13,9 @@ const SelectAuthorField = () => {
     return (
         <Select>
             {authors.map(option => (
-                <option value={option.value}>{option.title}</option>
+                <option key={option.value} value={option.value}>
+                    {option.title}
+                </option>
             ))}
         </Select>
     );

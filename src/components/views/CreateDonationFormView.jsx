@@ -1,10 +1,11 @@
-import React, { useCallback, useContext, useState } from 'react';
-
-import { PanelHeader, PanelHeaderBack } from '@vkontakte/vkui';
+import React, { useContext } from 'react';
 
 import NavigationContext from '../../NavigationContext';
 import useNavigate from '../../hooks/useNavigate';
 import BaseCreateDonationForm from '../forms/BaseCreateDonationForm';
+import FormStepper from '../forms/FormStepper/FormStepper';
+import FormStep from '../forms/FormStepper/FormStep';
+import TargetDonationAdditionalForm from '../forms/TargetDonationAdditionalForm';
 
 const CreateDonationFormView = () => {
     const { views } = useContext(NavigationContext);
@@ -16,12 +17,17 @@ const CreateDonationFormView = () => {
 
     return (
         <>
-            <PanelHeader
-                left={<PanelHeaderBack onClick={goToChooseDonationsPage} />}
+            <FormStepper
+                onBack={goToChooseDonationsPage}
+                viewId="regular-donation-form"
             >
-                Целевой сбор
-            </PanelHeader>
-            <BaseCreateDonationForm />
+                <FormStep title="Целевой сбор">
+                    <BaseCreateDonationForm />
+                </FormStep>
+                <FormStep title="Дополнительно">
+                    <TargetDonationAdditionalForm />
+                </FormStep>
+            </FormStepper>
         </>
     );
 };
