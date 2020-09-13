@@ -4,6 +4,7 @@ import {
     Text,
     Group,
     SimpleCell,
+    Separator,
     Div,
     InfoRow,
     Progress,
@@ -98,6 +99,11 @@ const DonationDescriptionView = () => {
                 <Group>
                     <Text>{donation.description}</Text>
                 </Group>
+                <Separator
+                    style={{
+                        marginTop: 15,
+                    }}
+                />
                 <div
                     style={{
                         display: "grid",
@@ -203,6 +209,7 @@ const DonationDescriptionView = () => {
                         </Text>
                     </SimpleCell>
                 </div>
+                <Separator wide={true} />
             </Div>
         </>
     );
