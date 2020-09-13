@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { Input } from '@vkontakte/vkui';
+import { Textarea } from '@vkontakte/vkui';
 
 const InputField = ({ fieldProps, ...other }) => {
     const isError = fieldProps.meta.modified && fieldProps.meta.error;
 
     return (
-        <Input
+        <Textarea
             {...other}
             value={fieldProps.input.value}
             status={isError ? 'error' : 'default'}

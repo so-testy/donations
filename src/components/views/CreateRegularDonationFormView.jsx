@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 
 import { FormLayoutGroup } from '@vkontakte/vkui';
-import { Field } from 'react-final-form';
 
 import NavigationContext from '../../NavigationContext';
 import useNavigation from '../../hooks/useNavigation';
@@ -13,17 +12,21 @@ import StorageContext from '../../StorageContext';
 
 const CreateRegularDonationFormView = () => {
     const { views } = useContext(NavigationContext);
-    const { state, setState } = useContext(StorageContext);
+    const { setState } = useContext(StorageContext);
 
     const { navigate: goToChooseDonationsPage } = useNavigation(
         views.createDonation.name,
         views.createDonation.panels.chooseDonationPage,
     );
 
+    const { navigate: goToPublishPage } = useNavigation(
+        views.publishDonationToFeed,
+        '',
+    );
+
     const submit = async values => {
-        setState({
-            donationList: [values],
-        });
+        setState({ donationList: [values] });
+        goToPublishPage();
     };
 
     return (

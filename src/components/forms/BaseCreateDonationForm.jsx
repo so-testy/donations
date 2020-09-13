@@ -1,14 +1,6 @@
 import React, { useCallback, useState } from 'react';
 
-import {
-    Div,
-    File,
-    FormLayoutGroup,
-    Input,
-    Textarea,
-    Select,
-    Banner,
-} from '@vkontakte/vkui';
+import { Div, File, FormLayoutGroup, Select, Banner } from '@vkontakte/vkui';
 
 import Icon28PictureOutline from '@vkontakte/icons/dist/28/picture_outline';
 import { Field } from 'react-final-form';
@@ -16,6 +8,7 @@ import { Field } from 'react-final-form';
 import BaseDonationForm from './BaseDonationForm';
 import { requiredValidator, validationHelper } from './validators';
 import InputField from '../ui/InputField';
+import TextareaField from '../ui/TextareaField';
 
 const styles = {
     coverLoader: {
@@ -26,22 +19,18 @@ const styles = {
     },
 };
 
+const toBase64 = file =>
+    new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+
 const BaseCreateDonationForm = ({ children, submitButton, t = {} }) => {
     const [coverPreview, setCoverPreview] = useState(null);
 
     const paymentOptions = [{ value: 'vkpay', title: 'Счёт VK Pay · 1234' }];
-
-    const handleCover = useCallback(
-        file => {
-            const fileReader = new FileReader();
-            fileReader.readAsDataURL(file);
-
-            fileReader.onload = function () {
-                setCoverPreview(fileReader.result);
-            };
-        },
-        [setCoverPreview],
-    );
 
     const removeCover = useCallback(() => setCoverPreview(null), [
         setCoverPreview,
@@ -52,7 +41,7 @@ const BaseCreateDonationForm = ({ children, submitButton, t = {} }) => {
             <Field
                 name="cover"
                 render={fieldProps => {
-                    return coverPreview ? (
+                    return fieldProps.input.value ? (
                         <Banner
                             before={
                                 <Div style={{ height: 108, padding: 0 }}></Div>
@@ -61,7 +50,7 @@ const BaseCreateDonationForm = ({ children, submitButton, t = {} }) => {
                             size="m"
                             background={
                                 <img
-                                    src={coverPreview}
+                                    src={fieldProps.input.value}
                                     style={{
                                         objectFit: 'cover',
                                         backgroundPosition: 'right bottom',
@@ -86,8 +75,10 @@ const BaseCreateDonationForm = ({ children, submitButton, t = {} }) => {
                             mode="outline"
                             style={styles.coverLoader}
                             onChange={e => {
-                                fieldProps.input.onChange(e.target.files[0]);
-                                handleCover(e.target.files[0]);
+                                toBase64(e.target.files[0]).then(data => {
+                                    setCoverPreview(data);
+                                    fieldProps.input.onChange(data);
+                                });
                             }}
                         >
                             Загрузить обложку
@@ -102,7 +93,6 @@ const BaseCreateDonationForm = ({ children, submitButton, t = {} }) => {
                         return (
                             <InputField
                                 placeholder="Название сбора"
-                                status={fieldProps.meta.error}
                                 onChange={e =>
                                     fieldProps.input.onChange(e.target.value)
                                 }
@@ -138,7 +128,6 @@ const BaseCreateDonationForm = ({ children, submitButton, t = {} }) => {
                         return (
                             <InputField
                                 placeholder="Например, лечение человека"
-                                status={fieldProps.meta.error}
                                 onChange={e =>
                                     fieldProps.input.onChange(e.target.value)
                                 }
@@ -154,12 +143,12 @@ const BaseCreateDonationForm = ({ children, submitButton, t = {} }) => {
                     name="description"
                     render={fieldProps => {
                         return (
-                            <Textarea
+                            <TextareaField
                                 placeholder="На что пойдут деньги и как они кому-то помогут?"
-                                status={fieldProps.meta.error}
                                 onChange={e =>
                                     fieldProps.input.onChange(e.target.value)
                                 }
+                                fieldProps={fieldProps}
                             />
                         );
                     }}
