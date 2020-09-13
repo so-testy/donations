@@ -37,7 +37,7 @@ const views = {
 };
 
 function App() {
-    const [activeView, setActiveView] = useState(views.publishDonationToFeed);
+    const [activeView, setActiveView] = useState(views.createDonation.name);
     const [activePanel, setActivePanel] = useState(
         views.createDonation.panels.chooseDonationPage,
     );
@@ -47,7 +47,7 @@ function App() {
     useEffect(() => {
         const state = localStorage.getItem('appState');
         setAppState(JSON.parse(state) || {});
-    }, [JSON.stringify(appState), setAppState]);
+    }, []);
 
     const setLocalStorageState = newState => {
         const state = merge(appState, newState);
@@ -55,8 +55,6 @@ function App() {
         localStorage.setItem('appState', JSON.stringify(state));
         setAppState(state);
     };
-
-    console.log(appState);
 
     return (
         <StorageContext.Provider
@@ -74,7 +72,7 @@ function App() {
                     <View id={views.donations.name} activePanel={activePanel}>
                         <Panel
                             id={views.donations.panels.donationsPage}
-                            centered
+                            centered={!appState.donationList}
                         >
                             <DonationsPageView />
                         </Panel>
