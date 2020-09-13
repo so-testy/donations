@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from 'react';
+import React, { useContext } from 'react';
 
 import {
     Card,
@@ -13,6 +13,8 @@ import {
 import Icon28CalendarOutline from '@vkontakte/icons/dist/28/calendar_outline';
 import Icon24ChevronRight from '@vkontakte/icons/dist/24/chevron_right';
 import Icon28TargetOutline from '@vkontakte/icons/dist/28/target_outline';
+
+import useNavigate from '../../hooks/useNavigate';
 
 import NavigationContext from '../../NavigationContext';
 
@@ -33,11 +35,21 @@ const DonationCell = ({ description, title, icon }) => (
 );
 
 const CreateDonationView = () => {
-    const { setActiveView, views } = useContext(NavigationContext);
+    const { views } = useContext(NavigationContext);
 
-    const goToDonationsPage = useCallback(
-        () => setActiveView(views.donations),
-        [setActiveView, views],
+    const { navigate: goToDonationsPage } = useNavigate(
+        views.donations.name,
+        views.donations.panels.donationsPage,
+    );
+
+    const { navigate: goToCreateDonation } = useNavigate(
+        views.createDonation.name,
+        views.createDonation.panels.createDonationPage,
+    );
+
+    const { navigate: goToCreateRegularDonation } = useNavigate(
+        views.createDonation.name,
+        views.createDonation.panels.createRegularDonationPage,
     );
 
     return (
@@ -46,14 +58,24 @@ const CreateDonationView = () => {
                 Тип сбора
             </PanelHeader>
             <CardGrid>
-                <Card mode="tint" size="l" style={styles.card}>
+                <Card
+                    mode="tint"
+                    size="l"
+                    style={styles.card}
+                    onClick={goToCreateDonation}
+                >
                     <DonationCell
                         description="Когда есть определённая цель"
                         title="Целевой сбор"
                         icon={<Icon28TargetOutline />}
                     />
                 </Card>
-                <Card mode="tint" size="l" style={styles.card}>
+                <Card
+                    mode="tint"
+                    size="l"
+                    style={styles.card}
+                    onClick={goToCreateRegularDonation}
+                >
                     <DonationCell
                         description="Если помощь нужна ежемесячно"
                         title="Регулярный сбор"
