@@ -12,6 +12,10 @@ import CreateDonationFormView from './components/views/CreateDonationFormView';
 import CreateRegularDonationFormView from './components/views/CreateRegularDonationFormView';
 import StorageContext from './StorageContext';
 
+import DonationInFeedView from './components/views/DonationInFeedView';
+import PublishDonationToFeedView from './components/views/PublishDonationToFeedView';
+import DonationDescriptionView from './components/views/DonationDescriptionView';
+
 const views = {
     donations: {
         name: 'donations',
@@ -27,10 +31,13 @@ const views = {
             createRegularDonationPage: 'create-regular-donation-page',
         },
     },
+    donationInFeed: 'donation-in-feed',
+    donationDescription: 'donation-description',
+    publishDonationToFeed: 'publish-donation-to-feed',
 };
 
 function App() {
-    const [activeView, setActiveView] = useState(views.createDonation.name);
+    const [activeView, setActiveView] = useState(views.publishDonationToFeed);
     const [activePanel, setActivePanel] = useState(
         views.createDonation.panels.chooseDonationPage,
     );
@@ -94,6 +101,30 @@ function App() {
                             }
                         >
                             <CreateRegularDonationFormView />
+                        </Panel>
+                    </View>
+                    <View
+                        id={views.donationInFeed}
+                        activePanel="donations-in-feed-page"
+                    >
+                        <Panel id="donations-in-feed-page">
+                            <DonationInFeedView />
+                        </Panel>
+                    </View>
+                    <View
+                        id={views.publishDonationToFeed}
+                        activePanel="publish-donation-to-feed-page"
+                    >
+                        <Panel id="publish-donation-to-feed-page">
+                            <PublishDonationToFeedView />
+                        </Panel>
+                    </View>
+                    <View
+                        id={views.donationDescription}
+                        activePanel="donation-description-page"
+                    >
+                        <Panel id="donation-description-page">
+                            <DonationDescriptionView />
                         </Panel>
                     </View>
                 </Root>
