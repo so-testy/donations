@@ -3,7 +3,7 @@ import React, { useCallback, useContext, useState } from 'react';
 import { FormLayoutGroup } from '@vkontakte/vkui';
 
 import NavigationContext from '../../NavigationContext';
-import useNavigate from '../../hooks/useNavigate';
+import useNavigation from '../../hooks/useNavigation';
 import BaseCreateDonationForm from '../forms/BaseCreateDonationForm';
 import SelectAuthorField from '../ui/SelectAuthorField';
 import FormStepper from '../forms/FormStepper/FormStepper';
@@ -12,7 +12,7 @@ import FormStep from '../forms/FormStepper/FormStep';
 const CreateRegularDonationFormView = () => {
     const { views } = useContext(NavigationContext);
 
-    const { navigate: goToChooseDonationsPage } = useNavigate(
+    const { navigate: goToChooseDonationsPage } = useNavigation(
         views.createDonation.name,
         views.createDonation.panels.chooseDonationPage,
     );

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 import NavigationContext from '../../NavigationContext';
-import useNavigate from '../../hooks/useNavigate';
+import useNavigation from '../../hooks/useNavigation';
 import BaseCreateDonationForm from '../forms/BaseCreateDonationForm';
 import FormStepper from '../forms/FormStepper/FormStepper';
 import FormStep from '../forms/FormStepper/FormStep';
@@ -10,7 +10,7 @@ import TargetDonationAdditionalForm from '../forms/TargetDonationAdditionalForm'
 const CreateDonationFormView = () => {
     const { views } = useContext(NavigationContext);
 
-    const { navigate: goToChooseDonationsPage } = useNavigate(
+    const { navigate: goToChooseDonationsPage } = useNavigation(
         views.createDonation.name,
         views.createDonation.panels.chooseDonationPage,
     );

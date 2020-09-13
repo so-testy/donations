@@ -5,7 +5,7 @@ import { Div } from '@vkontakte/vkui';
 import { Button } from '@vkontakte/vkui';
 import { Headline } from '@vkontakte/vkui';
 
-import useNavigate from '../../hooks/useNavigate';
+import useNavigation from '../../hooks/useNavigation';
 
 import NavigationContext from '../../NavigationContext';
 
@@ -18,7 +18,7 @@ const styles = {
 const DonationsPageView = () => {
     const { views } = useContext(NavigationContext);
 
-    const { navigate: goToCreateDonationPage } = useNavigate(
+    const { navigate: goToCreateDonationPage } = useNavigation(
         views.createDonation.name,
         views.createDonation.panels.chooseDonationPage,
     );

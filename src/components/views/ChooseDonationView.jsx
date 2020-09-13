@@ -14,7 +14,7 @@ import Icon28CalendarOutline from '@vkontakte/icons/dist/28/calendar_outline';
 import Icon24ChevronRight from '@vkontakte/icons/dist/24/chevron_right';
 import Icon28TargetOutline from '@vkontakte/icons/dist/28/target_outline';
 
-import useNavigate from '../../hooks/useNavigate';
+import useNavigation from '../../hooks/useNavigation';
 
 import NavigationContext from '../../NavigationContext';
 
@@ -37,17 +37,17 @@ const DonationCell = ({ description, title, icon }) => (
 const CreateDonationView = () => {
     const { views } = useContext(NavigationContext);
 
-    const { navigate: goToDonationsPage } = useNavigate(
+    const { navigate: goToDonationsPage } = useNavigation(
         views.donations.name,
         views.donations.panels.donationsPage,
     );
 
-    const { navigate: goToCreateDonation } = useNavigate(
+    const { navigate: goToCreateDonation } = useNavigation(
         views.createDonation.name,
         views.createDonation.panels.createDonationPage,
     );
 
-    const { navigate: goToCreateRegularDonation } = useNavigate(
+    const { navigate: goToCreateRegularDonation } = useNavigation(
         views.createDonation.name,
         views.createDonation.panels.createRegularDonationPage,
     );

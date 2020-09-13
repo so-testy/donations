@@ -2,7 +2,7 @@ import { useContext, useCallback } from 'react';
 
 import NavigationContext from '../NavigationContext';
 
-const useNavigate = (view, panel) => {
+const useNavigation = (view, panel) => {
     const { setActiveView, setActivePanel } = useContext(NavigationContext);
 
     const navigationCallback = useCallback(() => {
@@ -13,4 +13,4 @@ const useNavigate = (view, panel) => {
     return { navigate: navigationCallback };
 };
 
-export default useNavigate;
+export default useNavigation;
