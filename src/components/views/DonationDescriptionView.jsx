@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
     Text,
     Group,
     SimpleCell,
+    Separator,
     Div,
     InfoRow,
     Progress,
@@ -15,6 +16,10 @@ import Icon28ShareOuline from "@vkontakte/icons/dist/28/share_outline";
 import Icon28View from "@vkontakte/icons/dist/24/view";
 
 const DonationDescriptionView = () => {
+    const [donation, setDonation] = useState(
+        JSON.parse(localStorage.getItem("appState")).donationList[0] || {}
+    );
+
     return (
         <>
             <img
@@ -38,7 +43,7 @@ const DonationDescriptionView = () => {
                         }}
                         weight={"medium"}
                     >
-                        Добряши помогают щенкам
+                        {donation.donationName}
                     </Text>
                     <Text
                         style={{
@@ -55,7 +60,14 @@ const DonationDescriptionView = () => {
                             color: "var(--text_secondary)",
                         }}
                     >
-                        Сбор закончится через 5 дней
+                        Сбор{" "}
+                        {donation.isSubscribe
+                            ? "помощь нужна каждый месяц"
+                            : `закончится через ${Math.floor(
+                                  (new Date(donation.payDate).getTime() -
+                                      Date.now()) /
+                                      (1000 * 60 * 60 * 24)
+                              )} дней`}
                     </Text>
                 </Group>
                 <Group>
@@ -68,22 +80,33 @@ const DonationDescriptionView = () => {
                                     marginBottom: 5,
                                 }}
                             >
-                                Нужно собрать до 10 сентября
+                                {donation.isSubscribe
+                                    ? "Помощь нужна каждый месяц"
+                                    : `Закончится через ${Math.floor(
+                                          (new Date(
+                                              donation.payDate
+                                          ).getTime() -
+                                              Date.now()) /
+                                              (1000 * 60 * 60 * 24)
+                                      )} дней`}
                             </Text>
                         }
                     >
-                        <Progress value={87.5} />
+                        <Progress value={50} />
                     </InfoRow>
                 </Group>
 
                 <Group>
-                    <Text>Привет-привет, добряш!</Text>
-                    <Text>Я создал это событие для того, чтобы ...</Text>
+                    <Text>{donation.description}</Text>
                 </Group>
+                <Separator
+                    style={{
+                        marginTop: 15,
+                    }}
+                />
                 <div
                     style={{
                         display: "grid",
-                        margin: "0px 10px",
                         gridTemplateColumns: "75px 75px 75px auto 75px",
                     }}
                 >
@@ -186,6 +209,7 @@ const DonationDescriptionView = () => {
                         </Text>
                     </SimpleCell>
                 </div>
+                <Separator wide={true} />
             </Div>
         </>
     );

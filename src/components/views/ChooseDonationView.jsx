@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext } from "react";
 
 import {
     Card,
@@ -8,19 +8,19 @@ import {
     CardGrid,
     Headline,
     Div,
-} from '@vkontakte/vkui';
+} from "@vkontakte/vkui";
 
-import Icon28CalendarOutline from '@vkontakte/icons/dist/28/calendar_outline';
-import Icon24ChevronRight from '@vkontakte/icons/dist/24/chevron_right';
-import Icon28TargetOutline from '@vkontakte/icons/dist/28/target_outline';
+import Icon28CalendarOutline from "@vkontakte/icons/dist/28/calendar_outline";
+import Icon24ChevronRight from "@vkontakte/icons/dist/24/chevron_right";
+import Icon28TargetOutline from "@vkontakte/icons/dist/28/target_outline";
 
-import useNavigation from '../../hooks/useNavigation';
+import useNavigation from "../../hooks/useNavigation";
 
-import NavigationContext from '../../NavigationContext';
+import NavigationContext from "../../NavigationContext";
 
 const styles = {
     card: {
-        border: '0.33px solid rgba(0, 0, 0, 0.08)',
+        border: "0.33px solid rgba(0, 0, 0, 0.08)",
     },
 };
 
@@ -39,17 +39,17 @@ const CreateDonationView = () => {
 
     const { navigate: goToDonationsPage } = useNavigation(
         views.donations.name,
-        views.donations.panels.donationsPage,
+        views.donations.panels.donationsPage
     );
 
     const { navigate: goToCreateDonation } = useNavigation(
         views.createDonation.name,
-        views.createDonation.panels.createDonationPage,
+        views.createDonation.panels.createDonationPage
     );
 
     const { navigate: goToCreateRegularDonation } = useNavigation(
         views.createDonation.name,
-        views.createDonation.panels.createRegularDonationPage,
+        views.createDonation.panels.createRegularDonationPage
     );
 
     return (

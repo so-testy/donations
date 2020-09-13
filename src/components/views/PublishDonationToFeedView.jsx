@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import { PanelHeader, PanelHeaderButton, Textarea } from "@vkontakte/vkui";
 
@@ -11,8 +11,32 @@ import IconDismiss from "@vkontakte/icons/dist/24/dismiss";
 import DonationPost from "../Common/DonationPost";
 
 const PublishDonationToFeedView = () => {
+    const [donation, setDonation] = useState(
+        JSON.parse(localStorage.getItem("appState")).donationList[0] || {}
+    );
+
     const { views } = useContext(NavigationContext);
     const { navigate: goToFeed } = useNavigation(views.donationInFeed);
+
+    const changeMessage = (e) => {
+        e.preventDefault();
+        const newDonation = {
+            ...donation,
+            message: e.target.value,
+        };
+        setDonation(newDonation);
+        localStorage.setItem(
+            "appState",
+            JSON.stringify({
+                donationList: [
+                    ...JSON.parse(
+                        localStorage.getItem("appState")
+                    ).donationList.slice(0, -1),
+                    newDonation,
+                ],
+            })
+        );
+    };
 
     return (
         <>
@@ -52,22 +76,19 @@ const PublishDonationToFeedView = () => {
                         textarea.style.minHeight = "65px";
                     }
                 }}
-                defaultValue={
-                    "Сейчас самое время помочь тем, кто не может попросить о помощи сам."
-                }
+                onChange={changeMessage}
+                value={donation.message || "Поддержи проект!"}
             ></Textarea>
             <DonationPost
                 disabled={true}
                 clickHandler={goToFeed}
                 progressPercent={0}
                 progressTitle={"Помоги первым"}
-                userMessage={
-                    "Сейчас самое время помочь тем, кто не может попросить о помощи сам."
-                }
-                title={"Добряши помогают щенкам"}
+                userMessage={donation.message}
+                title={donation.donationName}
                 author={"Матвей Правосудов"}
-                date={new Date(2020, 9, 30)}
-                isSubscribe={false}
+                date={new Date(donation.payDate)}
+                isSubscribe={donation.isSubscribe}
                 image={"/shelter.jpg"}
                 isHiddenAuthor={true}
                 isHiddenAuthorMessage={true}
