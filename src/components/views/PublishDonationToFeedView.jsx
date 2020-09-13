@@ -28,7 +28,12 @@ const PublishDonationToFeedView = () => {
         localStorage.setItem(
             "appState",
             JSON.stringify({
-                donationList: [newDonation],
+                donationList: [
+                    ...JSON.parse(
+                        localStorage.getItem("appState")
+                    ).donationList.slice(0, -1),
+                    newDonation,
+                ],
             })
         );
     };
