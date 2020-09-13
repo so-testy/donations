@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext } from "react";
 
 import {
     PanelHeader,
@@ -13,20 +13,20 @@ import {
     CardGrid,
     Title,
     Caption,
-} from '@vkontakte/vkui';
-import { Div } from '@vkontakte/vkui';
-import { Button } from '@vkontakte/vkui';
-import { Headline } from '@vkontakte/vkui';
-import Icon24AddOutline from '@vkontakte/icons/dist/24/add_outline';
+} from "@vkontakte/vkui";
+import { Div } from "@vkontakte/vkui";
+import { Button } from "@vkontakte/vkui";
+import { Headline } from "@vkontakte/vkui";
+import Icon24AddOutline from "@vkontakte/icons/dist/24/add_outline";
 
-import useNavigation from '../../hooks/useNavigation';
+import useNavigation from "../../hooks/useNavigation";
 
-import NavigationContext from '../../NavigationContext';
-import StorageContext from '../../StorageContext';
+import NavigationContext from "../../NavigationContext";
+import StorageContext from "../../StorageContext";
 
 const styles = {
     headline: {
-        color: '#818C99',
+        color: "#818C99",
     },
 };
 
@@ -38,7 +38,7 @@ const DonationsPageView = () => {
 
     const { navigate: goToCreateDonationPage } = useNavigation(
         views.createDonation.name,
-        views.createDonation.panels.chooseDonationPage,
+        views.createDonation.panels.chooseDonationPage
     );
 
     return (
@@ -56,7 +56,7 @@ const DonationsPageView = () => {
                 Пожертвования
             </PanelHeader>
             {donationList ? (
-                <CardGrid style={{ margin: '12px 0' }}>
+                <CardGrid style={{ margin: "12px 0" }}>
                     {donationList.map(
                         (
                             {
@@ -66,12 +66,12 @@ const DonationsPageView = () => {
                                 amount,
                                 collectedAmount,
                             },
-                            index,
+                            index
                         ) => {
                             const daysRemain = Math.floor(
                                 (new Date(donationEndDate).getTime() -
                                     Date.now()) /
-                                    (1000 * 60 * 60 * 24),
+                                    (1000 * 60 * 60 * 24)
                             );
 
                             const percent =
@@ -87,16 +87,16 @@ const DonationsPageView = () => {
                                         </Headline>
                                         <Text
                                             style={{
-                                                color: 'var(--text_secondary)',
+                                                color: "var(--text_secondary)",
                                             }}
                                             level={1}
                                         >
                                             {isSubscribe
-                                                ? 'Помощь нужна каждый месяц'
+                                                ? "Помощь нужна каждый месяц"
                                                 : `Закончится через ${daysRemain} дней`}
                                         </Text>
                                         <Separator
-                                            style={{ margin: '8px 0' }}
+                                            style={{ margin: "8px 0" }}
                                             wide
                                         />
                                         <InfoRow
@@ -105,7 +105,7 @@ const DonationsPageView = () => {
                                                     level={1}
                                                     style={{
                                                         color:
-                                                            'var(--text_primary)',
+                                                            "var(--text_primary)",
                                                         marginBottom: 6,
                                                     }}
                                                 >
@@ -122,11 +122,11 @@ const DonationsPageView = () => {
                                     </Div>
                                 </Card>
                             );
-                        },
+                        }
                     )}
                 </CardGrid>
             ) : (
-                <Div style={{ textAlign: 'center' }}>
+                <Div style={{ textAlign: "center" }}>
                     <Headline weight="regular" style={styles.headline}>
                         У вас пока нет сборов.
                     </Headline>
