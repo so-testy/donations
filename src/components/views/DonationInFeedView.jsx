@@ -19,7 +19,8 @@ const DonationInFeedView = () => {
 
     const { views } = useContext(NavigationContext);
     const { navigate: gotoDescription } = useNavigation(
-        views.donationDescription
+        views.createDonation.name,
+        views.createDonation.panels.donationDescription
     );
 
     return (

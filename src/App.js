@@ -31,11 +31,11 @@ const views = {
             chooseDonationPage: 'choose-donation-page',
             createDonationPage: 'create-donation-page',
             createRegularDonationPage: 'create-regular-donation-page',
+            donationInFeed: 'donation-in-feed',
+            donationDescription: 'donation-description',
+            publishDonationToFeed: 'publish-donation-to-feed',
         },
     },
-    donationInFeed: 'donation-in-feed',
-    donationDescription: 'donation-description',
-    publishDonationToFeed: 'publish-donation-to-feed',
 };
 
 function App() {
@@ -102,28 +102,28 @@ function App() {
                         >
                             <CreateRegularDonationFormView />
                         </Panel>
-                    </View>
-                    <View
-                        id={views.donationInFeed}
-                        activePanel="donations-in-feed-page"
-                    >
-                        <Panel id="donations-in-feed-page">
-                            <DonationInFeedView />
-                        </Panel>
-                    </View>
-                    <View
-                        id={views.publishDonationToFeed}
-                        activePanel="publish-donation-to-feed-page"
-                    >
-                        <Panel id="publish-donation-to-feed-page">
+                        <Panel
+                            id={
+                                views.createDonation.panels
+                                    .publishDonationToFeed
+                            }
+                        >
                             <PublishDonationToFeedView />
                         </Panel>
-                    </View>
-                    <View
-                        id={views.donationDescription}
-                        activePanel="donation-description-page"
-                    >
-                        <Panel id="donation-description-page">
+                        <Panel
+                            id={
+                                views.createDonation.panels
+                                    .donationInFeed
+                            }
+                        >
+                            <DonationInFeedView />
+                        </Panel>
+                        <Panel
+                            id={
+                                views.createDonation.panels
+                                    .donationDescription
+                            }
+                        >
                             <DonationDescriptionView />
                         </Panel>
                     </View>

@@ -18,8 +18,8 @@ const CreateDonationFormView = () => {
     );
 
     const { navigate: goToPublishPage } = useNavigation(
-        views.publishDonationToFeed,
-        ""
+        views.createDonation.name,
+        views.createDonation.panels.publishDonationToFeed
     );
 
     const submit = async (values) => {

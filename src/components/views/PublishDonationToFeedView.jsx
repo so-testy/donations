@@ -16,7 +16,11 @@ const PublishDonationToFeedView = () => {
     );
 
     const { views } = useContext(NavigationContext);
-    const { navigate: goToFeed } = useNavigation(views.donationInFeed);
+
+    const { navigate: goToFeed } = useNavigation(
+        views.createDonation.name,
+        views.createDonation.panels.donationInFeed
+    );
 
     const changeMessage = (e) => {
         e.preventDefault();
