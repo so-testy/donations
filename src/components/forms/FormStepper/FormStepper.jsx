@@ -71,6 +71,7 @@ const FormStepper = ({ children, onSubmit, onBack, viewId }) => {
                                                 }
                                             />
                                         }
+                                        separator={false}
                                     >
                                         {child.props.title}
                                     </PanelHeader>
@@ -85,12 +86,7 @@ const FormStepper = ({ children, onSubmit, onBack, viewId }) => {
                     );
 
                     return (
-                        <form
-                            onSubmit={async (...args) => {
-                                await handleSubmit(...args);
-                                reset();
-                            }}
-                        >
+                        <form onSubmit={handleSubmit}>
                             <View id={viewId} activePanel={createPanelId(step)}>
                                 {panels}
                             </View>

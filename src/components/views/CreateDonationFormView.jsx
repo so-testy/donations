@@ -23,6 +23,9 @@ const CreateDonationFormView = () => {
     );
 
     const submit = async values => {
+        values.isSubscribe = false;
+        values.collectedAmount = Math.floor(Math.random() * values.amount);
+
         setState({ donationList: [values] });
         goToPublishPage();
     };

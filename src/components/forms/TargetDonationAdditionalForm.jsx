@@ -15,7 +15,7 @@ const TargetDonationAdditionalForm = ({ children, submitButton }) => {
             </FormLayoutGroup>
             <FormLayoutGroup top="Сбор завершится">
                 <Field
-                    name="donationEnd"
+                    name="donationEndType"
                     initialValue={1}
                     render={fieldProps => {
                         return (
@@ -51,7 +51,7 @@ const TargetDonationAdditionalForm = ({ children, submitButton }) => {
             </FormLayoutGroup>
             <FormLayoutGroup top="Дата окончания">
                 <Field
-                    name="payDate"
+                    name="donationEndDate"
                     render={fieldProps => {
                         return (
                             <Input

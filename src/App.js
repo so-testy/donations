@@ -37,9 +37,9 @@ const views = {
 };
 
 function App() {
-    const [activeView, setActiveView] = useState(views.createDonation.name);
+    const [activeView, setActiveView] = useState(views.donations.name);
     const [activePanel, setActivePanel] = useState(
-        views.createDonation.panels.chooseDonationPage,
+        views.donations.panels.donationsPage,
     );
 
     const [appState, setAppState] = useState({});
