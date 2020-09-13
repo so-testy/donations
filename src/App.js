@@ -12,6 +12,7 @@ import CreateRegularDonationFormView from './components/views/CreateRegularDonat
 
 import DonationInFeedView from './components/views/DonationInFeedView';
 import PublishDonationToFeedView from './components/views/PublishDonationToFeedView';
+import DonationDescriptionView from './components/views/DonationDescriptionView';
 
 const views = {
     donations: {
@@ -29,11 +30,12 @@ const views = {
         },
     },
     donationInFeed: 'donation-in-feed',
+    donationDescription: 'donation-description',
     publishDonationToFeed: 'publish-donation-to-feed'
 };
 
 function App() {
-    const [activeView, setActiveView] = useState(views.publishDonationToFeed);
+    const [activeView, setActiveView] = useState(views.donationDescription);
     const [activePanel, setActivePanel] = useState(
         views.createDonation.panels.chooseDonationPage,
     );
@@ -86,6 +88,14 @@ function App() {
                 >
                     <Panel id="publish-donation-to-feed-page">
                         <PublishDonationToFeedView />
+                    </Panel>
+                </View>
+                <View
+                    id={views.donationDescription}
+                    activePanel="donation-description-page"
+                >
+                    <Panel id="donation-description-page">
+                        <DonationDescriptionView />
                     </Panel>
                 </View>
             </Root>

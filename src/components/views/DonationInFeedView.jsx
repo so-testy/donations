@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import {
     Text,
@@ -12,6 +12,9 @@ import {
     Progress,
 } from "@vkontakte/vkui";
 
+import NavigationContext from "../../NavigationContext";
+import useNavigation from "../../hooks/useNavigation";
+
 import Icon24MoreHorizontal from "@vkontakte/icons/dist/24/more_horizontal";
 import Icon28LikeOutline from "@vkontakte/icons/dist/28/like_outline";
 import Icon28CommentOutline from "@vkontakte/icons/dist/28/comment_outline";
@@ -19,6 +22,11 @@ import Icon28ShareOuline from "@vkontakte/icons/dist/28/share_outline";
 import Icon28View from "@vkontakte/icons/dist/24/view";
 
 const DonationInFeedView = () => {
+    const { views } = useContext(NavigationContext);
+    const { navigate: gotoDescription } = useNavigation(
+        views.donationDescription
+    );
+
     return (
         <>
             <Group>
@@ -107,6 +115,9 @@ const DonationInFeedView = () => {
                             marginRight: 15,
                         }}
                         mode={"outline"}
+                        onClick={() => {
+                            gotoDescription();
+                        }}
                     >
                         Помочь
                     </Button>

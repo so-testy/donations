@@ -1,5 +1,4 @@
-import React, { useCallback, useContext } from "react";
-import useNavigation from "../../hooks/useNavigation";
+import React, { useContext } from "react";
 
 import {
     PanelHeader,
@@ -14,6 +13,7 @@ import {
 } from "@vkontakte/vkui";
 
 import NavigationContext from "../../NavigationContext";
+import useNavigation from "../../hooks/useNavigation";
 
 import IconUp from "@vkontakte/icons/dist/24/up";
 import IconDismiss from "@vkontakte/icons/dist/24/dismiss";
