@@ -28,13 +28,7 @@ const toBase64 = file =>
     });
 
 const BaseCreateDonationForm = ({ children, submitButton, t = {} }) => {
-    const [coverPreview, setCoverPreview] = useState(null);
-
     const paymentOptions = [{ value: 'vkpay', title: 'Счёт VK Pay · 1234' }];
-
-    const removeCover = useCallback(() => setCoverPreview(null), [
-        setCoverPreview,
-    ]);
 
     return (
         <BaseDonationForm submitButton={submitButton}>
@@ -65,7 +59,7 @@ const BaseCreateDonationForm = ({ children, submitButton, t = {} }) => {
                             style={{ marginTop: 0, marginBottom: 0 }}
                             onDismiss={() => {
                                 fieldProps.input.onChange(null);
-                                removeCover();
+                                // removeCover();
                             }}
                         />
                     ) : (
@@ -76,7 +70,7 @@ const BaseCreateDonationForm = ({ children, submitButton, t = {} }) => {
                             style={styles.coverLoader}
                             onChange={e => {
                                 toBase64(e.target.files[0]).then(data => {
-                                    setCoverPreview(data);
+                                    // setCoverPreview(data);
                                     fieldProps.input.onChange(data);
                                 });
                             }}

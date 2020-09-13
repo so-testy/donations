@@ -18,11 +18,14 @@ const CreateDonationFormView = () => {
     );
 
     const { navigate: goToPublishPage } = useNavigation(
-        views.createDonation.name,
-        views.createDonation.panels.publishDonationToFeed
+        views.publishDonationToFeed,
+        ""
     );
 
     const submit = async (values) => {
+        values.isSubscribe = false;
+        values.collectedAmount = Math.floor(Math.random() * values.amount);
+
         setState({ donationList: [values] });
         goToPublishPage();
     };
@@ -34,10 +37,10 @@ const CreateDonationFormView = () => {
                 viewId="regular-donation-form"
                 onSubmit={submit}
             >
-                <FormStep title="Целевой сбор">
+                <FormStep title="Целевой сбор" id="base">
                     <BaseCreateDonationForm />
                 </FormStep>
-                <FormStep title="Дополнительно">
+                <FormStep title="Дополнительно" id="addition">
                     <TargetDonationAdditionalForm />
                 </FormStep>
             </FormStepper>

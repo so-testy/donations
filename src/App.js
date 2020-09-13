@@ -39,10 +39,13 @@ const views = {
 };
 
 function App() {
-    const [activeView, setActiveView] = useState(views.createDonation.name);
-    const [activePanel, setActivePanel] = useState(
-        views.createDonation.panels.chooseDonationPage,
-    );
+    const [
+        { view: activeView, panel: activePanel },
+        setActiveNavigation,
+    ] = useState({
+        view: views.donations.name,
+        panel: views.donations.panels.donationsPage,
+    });
 
     const [appState, setAppState] = useState({});
 
@@ -66,8 +69,7 @@ function App() {
                 value={{
                     views,
                     activeView,
-                    setActiveView,
-                    setActivePanel,
+                    setActiveNavigation,
                 }}
             >
                 <Root activeView={activeView}>
