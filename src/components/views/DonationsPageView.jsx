@@ -1,9 +1,12 @@
-import React, { useCallback, useContext } from "react";
+import React, { useContext } from "react";
 
 import { PanelHeader } from "@vkontakte/vkui";
 import { Div } from "@vkontakte/vkui";
 import { Button } from "@vkontakte/vkui";
 import { Headline } from "@vkontakte/vkui";
+
+import useNavigation from "../../hooks/useNavigation";
+
 import NavigationContext from "../../NavigationContext";
 
 const styles = {
@@ -13,11 +16,11 @@ const styles = {
 };
 
 const DonationsPageView = () => {
-    const { setActiveView, views } = useContext(NavigationContext);
+    const { views } = useContext(NavigationContext);
 
-    const goToCreateDonationPage = useCallback(
-        () => setActiveView(views.createDonation),
-        [setActiveView, views]
+    const { navigate: goToCreateDonationPage } = useNavigation(
+        views.createDonation.name,
+        views.createDonation.panels.chooseDonationPage
     );
 
     return (

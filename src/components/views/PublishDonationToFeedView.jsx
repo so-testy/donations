@@ -1,4 +1,5 @@
 import React, { useCallback, useContext } from "react";
+import useNavigation from "../../hooks/useNavigation";
 
 import {
     PanelHeader,
@@ -18,12 +19,8 @@ import IconUp from "@vkontakte/icons/dist/24/up";
 import IconDismiss from "@vkontakte/icons/dist/24/dismiss";
 
 const PublishDonationToFeedView = () => {
-    const { setActiveView, views } = useContext(NavigationContext);
-
-    const goToFeed = useCallback(() => setActiveView(views.donationInFeed), [
-        setActiveView,
-        views,
-    ]);
+    const { views } = useContext(NavigationContext);
+    const { navigate: goToFeed } = useNavigation(views.donationInFeed);
 
     return (
         <>
