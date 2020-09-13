@@ -37,10 +37,10 @@ const CreateDonationFormView = () => {
                 viewId="regular-donation-form"
                 onSubmit={submit}
             >
-                <FormStep title="Целевой сбор">
+                <FormStep title="Целевой сбор" id="base">
                     <BaseCreateDonationForm />
                 </FormStep>
-                <FormStep title="Дополнительно">
+                <FormStep title="Дополнительно" id="addition">
                     <TargetDonationAdditionalForm />
                 </FormStep>
             </FormStepper>

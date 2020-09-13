@@ -58,13 +58,16 @@ const DonationsPageView = () => {
             {donationList ? (
                 <CardGrid style={{ margin: '12px 0' }}>
                     {donationList.map(
-                        ({
-                            donationName,
-                            donationEndDate,
-                            isSubscribe,
-                            amount,
-                            collectedAmount,
-                        }) => {
+                        (
+                            {
+                                donationName,
+                                donationEndDate,
+                                isSubscribe,
+                                amount,
+                                collectedAmount,
+                            },
+                            index,
+                        ) => {
                             const daysRemain = Math.floor(
                                 (new Date(donationEndDate).getTime() -
                                     Date.now()) /
@@ -77,7 +80,7 @@ const DonationsPageView = () => {
                                     : 0;
 
                             return (
-                                <Card size="l" mode="outline">
+                                <Card size="l" mode="outline" key={index}>
                                     <Div>
                                         <Headline weight="semibold">
                                             {donationName}

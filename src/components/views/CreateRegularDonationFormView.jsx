@@ -39,7 +39,7 @@ const CreateRegularDonationFormView = () => {
                 viewId="donation-form"
                 onSubmit={submit}
             >
-                <FormStep title="Регулярный сбор">
+                <FormStep title="Регулярный сбор" id="base">
                     <BaseCreateDonationForm t={{ amount: 'Сумма в месяц, ₽' }}>
                         <FormLayoutGroup top="Автор">
                             <SelectAuthorField />

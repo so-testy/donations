@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo, useEffect } from 'react';
 
 import {
     Button,
@@ -13,19 +13,29 @@ const FormStepper = ({ children, onSubmit, onBack, viewId }) => {
     const [step, setStep] = useState(0);
     const [formState, setFormState] = useState({});
 
+    const stepIds = React.Children.map(children, child => child.props.id);
+
     const nextStep = useCallback(() => setStep(step + 1), [step, setStep]);
     const prevStep = useCallback(() => setStep(step - 1), [step, setStep]);
 
-    const createPanelId = useCallback(index => viewId + '-' + index, [viewId]);
+    const createPanelId = useCallback(index => viewId + '-' + stepIds[index], [
+        viewId,
+        stepIds,
+    ]);
 
     const stepsNumber = React.Children.count(children);
+
+    useEffect(() => {
+        console.log('mounted');
+        return () => console.log('removed');
+    }, []);
 
     return (
         <>
             <Form
                 onSubmit={onSubmit}
                 initialValues={formState}
-                render={({ handleSubmit, form: { getState, reset } }) => {
+                render={({ handleSubmit, form: { getState } }) => {
                     const { valid, values } = getState();
 
                     const panels = React.Children.map(
