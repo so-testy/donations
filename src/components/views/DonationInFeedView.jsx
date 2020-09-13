@@ -1,25 +1,16 @@
 import React, { useContext } from "react";
 
-import {
-    Text,
-    Group,
-    SimpleCell,
-    Card,
-    Div,
-    Avatar,
-    Button,
-    InfoRow,
-    Progress,
-} from "@vkontakte/vkui";
+import { Text, SimpleCell } from "@vkontakte/vkui";
 
 import NavigationContext from "../../NavigationContext";
 import useNavigation from "../../hooks/useNavigation";
 
-import Icon24MoreHorizontal from "@vkontakte/icons/dist/24/more_horizontal";
 import Icon28LikeOutline from "@vkontakte/icons/dist/28/like_outline";
 import Icon28CommentOutline from "@vkontakte/icons/dist/28/comment_outline";
 import Icon28ShareOuline from "@vkontakte/icons/dist/28/share_outline";
 import Icon28View from "@vkontakte/icons/dist/24/view";
+
+import DonationPost from "../Common/DonationPost";
 
 const DonationInFeedView = () => {
     const { views } = useContext(NavigationContext);
@@ -29,100 +20,20 @@ const DonationInFeedView = () => {
 
     return (
         <>
-            <Group>
-                <SimpleCell
-                    disabled={true}
-                    description="час назад"
-                    before={<Avatar size={48} src={"/avatar.jpg"} />}
-                    after={
-                        <Icon24MoreHorizontal fill="var(--text_secondary)" />
-                    }
-                >
-                    Матвей Правосудов
-                </SimpleCell>
-            </Group>
-            <Div>
-                <Text>
-                    Сейчас самое время помочь тем, кто не может попросить о
-                    помощи сам.
-                </Text>
-            </Div>
-            <Card
-                style={{
-                    marginLeft: 10,
-                    marginRight: 10,
-                    overflow: "hidden",
-                }}
-                size="s"
-                mode="outline"
-            >
-                <img
-                    style={{
-                        width: "100%",
-                    }}
-                    alt="shelter"
-                    src={"/shelter.jpg"}
-                />
-                <Group>
-                    <Text
-                        style={{
-                            fontSize: 16,
-                            marginLeft: 10,
-                            marginTop: 5,
-                        }}
-                        weight={"semibold"}
-                    >
-                        Добряши помогают щенкам
-                    </Text>
-                    <Text
-                        style={{
-                            fontSize: 14,
-                            marginLeft: 10,
-                            color: "var(--text_secondary)",
-                        }}
-                    >
-                        Матвей Правосудов · Закончится через 5 дней
-                    </Text>
-                </Group>
-                <Group
-                    style={{
-                        display: "grid",
-                        alignItems: "center",
-                        gridTemplateColumns: "auto 90px",
-                        gridGap: "20px",
-                    }}
-                >
-                    <InfoRow
-                        style={{
-                            margin: "10px 0px 15px 15px",
-                        }}
-                        header={
-                            <Text
-                                style={{
-                                    fontSize: 13,
-                                    color: "var(--text_primary)",
-                                    marginBottom: 5,
-                                }}
-                            >
-                                Собрано 8 750 ₽ из 10 000 ₽
-                            </Text>
-                        }
-                    >
-                        <Progress value={87.5} />
-                    </InfoRow>
-                    <Button
-                        style={{
-                            marginRight: 15,
-                        }}
-                        mode={"outline"}
-                        onClick={() => {
-                            gotoDescription();
-                        }}
-                    >
-                        Помочь
-                    </Button>
-                </Group>
-            </Card>
+            <DonationPost
+                disabled={false}
+                clickHandler={gotoDescription}
+                progressPercent={87.5}
+                progressTitle={"Собрано 8 750 ₽ из 10 000 ₽"}
+                userMessage={
+                    "Сейчас самое время помочь тем, кто не может попросить о помощи сам."
+                }
+                title={"Добряши помогают щенкам"}
+                author={"Матвей Правосудов"}
+                date={new Date(2020, 9, 30)}
+                isSubscribe={false}
+                image={"/shelter.jpg"}
+            />
             <div
                 style={{
                     display: "grid",

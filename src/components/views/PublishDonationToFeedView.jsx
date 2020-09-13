@@ -1,22 +1,14 @@
 import React, { useContext } from "react";
 
-import {
-    PanelHeader,
-    PanelHeaderButton,
-    Textarea,
-    Text,
-    Group,
-    Card,
-    Button,
-    InfoRow,
-    Progress,
-} from "@vkontakte/vkui";
+import { PanelHeader, PanelHeaderButton, Textarea } from "@vkontakte/vkui";
 
 import NavigationContext from "../../NavigationContext";
 import useNavigation from "../../hooks/useNavigation";
 
 import IconUp from "@vkontakte/icons/dist/24/up";
 import IconDismiss from "@vkontakte/icons/dist/24/dismiss";
+
+import DonationPost from "../Common/DonationPost";
 
 const PublishDonationToFeedView = () => {
     const { views } = useContext(NavigationContext);
@@ -64,80 +56,22 @@ const PublishDonationToFeedView = () => {
                     "Сейчас самое время помочь тем, кто не может попросить о помощи сам."
                 }
             ></Textarea>
-            <Card
-                style={{
-                    marginLeft: 10,
-                    marginRight: 10,
-                    overflow: "hidden",
-                }}
-                size="s"
-                mode="outline"
-            >
-                <img
-                    style={{
-                        width: "100%",
-                    }}
-                    alt="shelter"
-                    src={"/shelter.jpg"}
-                />
-                <Group>
-                    <Text
-                        style={{
-                            fontSize: 16,
-                            marginLeft: 10,
-                            marginTop: 5,
-                        }}
-                        weight={"semibold"}
-                    >
-                        Добряши помогают щенкам
-                    </Text>
-                    <Text
-                        style={{
-                            fontSize: 14,
-                            marginLeft: 10,
-                            color: "var(--text_secondary)",
-                        }}
-                    >
-                        Матвей Правосудов · Закончится через 5 дней
-                    </Text>
-                </Group>
-                <Group
-                    style={{
-                        display: "grid",
-                        alignItems: "center",
-                        gridTemplateColumns: "auto 90px",
-                        gridGap: "20px",
-                    }}
-                >
-                    <InfoRow
-                        style={{
-                            margin: "10px 0px 15px 15px",
-                        }}
-                        header={
-                            <Text
-                                style={{
-                                    fontSize: 13,
-                                    color: "var(--text_primary)",
-                                    marginBottom: 5,
-                                }}
-                            >
-                                Помоги первым
-                            </Text>
-                        }
-                    >
-                        <Progress value={0} disabled={true} />
-                    </InfoRow>
-                    <Button
-                        style={{
-                            marginRight: 15,
-                        }}
-                        mode={"outline"}
-                        disabled={true}
-                    >
-                        Помочь
-                    </Button>
-                </Group>
-            </Card>
+            <DonationPost
+                disabled={true}
+                clickHandler={goToFeed}
+                progressPercent={0}
+                progressTitle={"Помоги первым"}
+                userMessage={
+                    "Сейчас самое время помочь тем, кто не может попросить о помощи сам."
+                }
+                title={"Добряши помогают щенкам"}
+                author={"Матвей Правосудов"}
+                date={new Date(2020, 9, 30)}
+                isSubscribe={false}
+                image={"/shelter.jpg"}
+                isHiddenAuthor={true}
+                isHiddenAuthorMessage={true}
+            />
         </>
     );
 };
