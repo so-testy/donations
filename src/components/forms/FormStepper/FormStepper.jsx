@@ -7,9 +7,11 @@ import {
     PanelHeaderBack,
     View,
 } from '@vkontakte/vkui';
+import { Form } from 'react-final-form';
 
 const FormStepper = ({ children, onSubmit, onBack, viewId }) => {
     const [step, setStep] = useState(0);
+    const [formState, setFormState] = useState({});
 
     const nextStep = useCallback(() => setStep(step + 1), [step, setStep]);
     const prevStep = useCallback(() => setStep(step - 1), [step, setStep]);
@@ -18,42 +20,84 @@ const FormStepper = ({ children, onSubmit, onBack, viewId }) => {
 
     const stepsNumber = React.Children.count(children);
 
-    const panels = React.Children.map(
-        children,
-        (child, index) => {
-            const submitButton = (
-                <Button
-                    onClick={index < stepsNumber - 1 ? nextStep : onSubmit}
-                    size="xl"
-                >
-                    {index < stepsNumber - 1 ? 'Далее' : 'Создать сбор'}
-                </Button>
-            );
-
-            return (
-                <Panel key={createPanelId(index)} id={createPanelId(index)}>
-                    <PanelHeader
-                        left={
-                            <PanelHeaderBack
-                                onClick={step === 0 ? onBack : prevStep}
-                            />
-                        }
-                    >
-                        {child.props.title}
-                    </PanelHeader>
-
-                    {React.cloneElement(child, { submitButton })}
-                </Panel>
-            );
-        },
-        [step, stepsNumber],
-    );
-
     return (
         <>
-            <View id={viewId} activePanel={createPanelId(step)}>
-                {panels}
-            </View>
+            <Form
+                onSubmit={onSubmit}
+                initialValues={formState}
+                render={({ handleSubmit, form: { getState, reset } }) => {
+                    const { valid, values } = getState();
+
+                    const panels = React.Children.map(
+                        children,
+                        (child, index) => {
+                            const isLastPanel = index === stepsNumber - 1;
+
+                            const submitButton = (
+                                <Button
+                                    type={isLastPanel ? 'submit' : 'button'}
+                                    onClick={
+                                        !isLastPanel
+                                            ? () => {
+                                                  setFormState(values);
+                                                  nextStep();
+                                              }
+                                            : null
+                                    }
+                                    size="xl"
+                                    disabled={!valid}
+                                >
+                                    {!isLastPanel ? 'Далее' : 'Создать сбор'}
+                                </Button>
+                            );
+
+                            return (
+                                <Panel
+                                    key={createPanelId(index)}
+                                    id={createPanelId(index)}
+                                >
+                                    <PanelHeader
+                                        left={
+                                            <PanelHeaderBack
+                                                onClick={
+                                                    step === 0
+                                                        ? onBack
+                                                        : () => {
+                                                              setFormState(
+                                                                  values,
+                                                              );
+                                                              prevStep();
+                                                          }
+                                                }
+                                            />
+                                        }
+                                    >
+                                        {child.props.title}
+                                    </PanelHeader>
+
+                                    {React.cloneElement(child, {
+                                        submitButton,
+                                    })}
+                                </Panel>
+                            );
+                        },
+                        [step, stepsNumber],
+                    );
+
+                    return (
+                        <form
+                            onSubmit={async (...args) => {
+                                await handleSubmit(...args);
+                                reset();
+                            }}
+                        >
+                            <View id={viewId} activePanel={createPanelId(step)}>
+                                {panels}
+                            </View>
+                        </form>
+                    );
+                }}
+            />
         </>
     );
 };

@@ -6,20 +6,29 @@ import BaseCreateDonationForm from '../forms/BaseCreateDonationForm';
 import FormStepper from '../forms/FormStepper/FormStepper';
 import FormStep from '../forms/FormStepper/FormStep';
 import TargetDonationAdditionalForm from '../forms/TargetDonationAdditionalForm';
+import StorageContext from '../../StorageContext';
 
 const CreateDonationFormView = () => {
     const { views } = useContext(NavigationContext);
+    const { state, setState } = useContext(StorageContext);
 
     const { navigate: goToChooseDonationsPage } = useNavigation(
         views.createDonation.name,
         views.createDonation.panels.chooseDonationPage,
     );
 
+    const submit = async values => {
+        setState({
+            donationList: [values],
+        });
+    };
+
     return (
         <>
             <FormStepper
                 onBack={goToChooseDonationsPage}
                 viewId="regular-donation-form"
+                onSubmit={submit}
             >
                 <FormStep title="Целевой сбор">
                     <BaseCreateDonationForm />

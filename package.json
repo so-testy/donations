@@ -9,6 +9,7 @@
     "@vkontakte/icons": "^1.40.0",
     "@vkontakte/vk-bridge": "^2.2.8",
     "@vkontakte/vkui": "^3.12.6",
+    "deepmerge": "^4.2.2",
     "final-form": "^4.20.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

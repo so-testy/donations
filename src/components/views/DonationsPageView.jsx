@@ -1,9 +1,10 @@
-import React, { useCallback, useContext } from 'react';
+import React, { useContext } from 'react';
 
-import { PanelHeader } from '@vkontakte/vkui';
+import { PanelHeader, PanelHeaderButton } from '@vkontakte/vkui';
 import { Div } from '@vkontakte/vkui';
 import { Button } from '@vkontakte/vkui';
 import { Headline } from '@vkontakte/vkui';
+import Icon24AddOutline from '@vkontakte/icons/dist/24/add_outline';
 
 import useNavigation from '../../hooks/useNavigation';
 
@@ -25,7 +26,15 @@ const DonationsPageView = () => {
 
     return (
         <>
-            <PanelHeader>Пожертвования</PanelHeader>
+            <PanelHeader
+                right={
+                    <PanelHeaderButton>
+                        <Icon24AddOutline />
+                    </PanelHeaderButton>
+                }
+            >
+                Пожертвования
+            </PanelHeader>
             <Div style={{ textAlign: 'center' }}>
                 <Headline weight="regular" style={styles.headline}>
                     У вас пока нет сборов.
