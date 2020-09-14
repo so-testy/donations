@@ -4,14 +4,11 @@ import {
     PanelHeader,
     PanelHeaderButton,
     Card,
-    Group,
     Text,
     InfoRow,
     Progress,
     Separator,
-    Banner,
     CardGrid,
-    Title,
     Caption,
 } from "@vkontakte/vkui";
 import { Div } from "@vkontakte/vkui";

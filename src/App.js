@@ -44,7 +44,7 @@ function App() {
         setActiveNavigation,
     ] = useState({
         view: views.createDonation.name,
-        panel: views.createDonation.panels.publishDonationToFeed,
+        panel: views.createDonation.panels.chooseDonationPage,
     });
 
     const [appState, setAppState] = useState({});

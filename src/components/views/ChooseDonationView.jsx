@@ -7,7 +7,6 @@ import {
     Cell,
     CardGrid,
     Headline,
-    Div,
 } from "@vkontakte/vkui";
 
 import Icon28CalendarOutline from "@vkontakte/icons/dist/28/calendar_outline";

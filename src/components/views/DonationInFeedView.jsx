@@ -13,8 +13,11 @@ import Icon28View from "@vkontakte/icons/dist/24/view";
 import DonationPost from "../Common/DonationPost";
 
 const DonationInFeedView = () => {
+    // eslint-disable-next-line no-unused-vars
     const [donation, setDonation] = useState(
-        JSON.parse(localStorage.getItem("appState")).donationList[0] || {}
+        JSON.parse(localStorage.getItem("appState")).donationList.slice(
+            -1
+        )[0] || {}
     );
 
     const { views } = useContext(NavigationContext);
@@ -39,7 +42,7 @@ const DonationInFeedView = () => {
                 userMessage={donation.message}
                 title={donation.donationName}
                 author={"Матвей Правосудов"}
-                date={new Date(donation.payDate)}
+                date={new Date(donation.donationEndDate)}
                 isSubscribe={donation.isSubscribe}
                 image={"/shelter.jpg"}
                 isHiddenAuthorMessage={false}

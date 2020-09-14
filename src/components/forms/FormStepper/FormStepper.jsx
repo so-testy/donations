@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo, useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from "react";
 
 import {
     Button,
@@ -6,28 +6,28 @@ import {
     PanelHeader,
     PanelHeaderBack,
     View,
-} from '@vkontakte/vkui';
-import { Form } from 'react-final-form';
+} from "@vkontakte/vkui";
+import { Form } from "react-final-form";
 
 const FormStepper = ({ children, onSubmit, onBack, viewId }) => {
     const [step, setStep] = useState(0);
     const [formState, setFormState] = useState({});
 
-    const stepIds = React.Children.map(children, child => child.props.id);
+    const stepIds = React.Children.map(children, (child) => child.props.id);
 
     const nextStep = useCallback(() => setStep(step + 1), [step, setStep]);
     const prevStep = useCallback(() => setStep(step - 1), [step, setStep]);
 
-    const createPanelId = useCallback(index => viewId + '-' + stepIds[index], [
-        viewId,
-        stepIds,
-    ]);
+    const createPanelId = useCallback(
+        (index) => viewId + "-" + stepIds[index],
+        [viewId, stepIds]
+    );
 
     const stepsNumber = React.Children.count(children);
 
     useEffect(() => {
-        console.log('mounted');
-        return () => console.log('removed');
+        console.log("mounted");
+        return () => console.log("removed");
     }, []);
 
     return (
@@ -45,7 +45,7 @@ const FormStepper = ({ children, onSubmit, onBack, viewId }) => {
 
                             const submitButton = (
                                 <Button
-                                    type={isLastPanel ? 'submit' : 'button'}
+                                    type={isLastPanel ? "submit" : "button"}
                                     onClick={
                                         !isLastPanel
                                             ? () => {
@@ -57,7 +57,7 @@ const FormStepper = ({ children, onSubmit, onBack, viewId }) => {
                                     size="xl"
                                     disabled={!valid}
                                 >
-                                    {!isLastPanel ? 'Далее' : 'Создать сбор'}
+                                    {!isLastPanel ? "Далее" : "Создать сбор"}
                                 </Button>
                             );
 
@@ -74,7 +74,7 @@ const FormStepper = ({ children, onSubmit, onBack, viewId }) => {
                                                         ? onBack
                                                         : () => {
                                                               setFormState(
-                                                                  values,
+                                                                  values
                                                               );
                                                               prevStep();
                                                           }
@@ -92,7 +92,7 @@ const FormStepper = ({ children, onSubmit, onBack, viewId }) => {
                                 </Panel>
                             );
                         },
-                        [step, stepsNumber],
+                        [step, stepsNumber]
                     );
 
                     return (

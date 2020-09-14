@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
     Text,
@@ -11,9 +11,9 @@ import {
     InfoRow,
     Progress,
     Separator,
-} from '@vkontakte/vkui';
+} from "@vkontakte/vkui";
 
-import Icon24MoreHorizontal from '@vkontakte/icons/dist/24/more_horizontal';
+import Icon24MoreHorizontal from "@vkontakte/icons/dist/24/more_horizontal";
 
 const DonationPost = ({
     disabled,
@@ -36,7 +36,7 @@ const DonationPost = ({
                     <SimpleCell
                         disabled={true}
                         description="час назад"
-                        before={<Avatar size={48} src={'/avatar.jpg'} />}
+                        before={<Avatar size={48} src={"/avatar.jpg"} />}
                         after={
                             <Icon24MoreHorizontal fill="var(--text_secondary)" />
                         }
@@ -47,20 +47,23 @@ const DonationPost = ({
             )}
             {!isHiddenAuthorMessage && (
                 <Div>
-                    <Text>{userMessage}</Text>
+                    <Text>
+                        {userMessage ||
+                            "Сейчас самое время помочь тем, кто не может попросить о помощи сам!"}
+                    </Text>
                 </Div>
             )}
             <Div>
-                <Card style={{ overflow: 'hidden' }} size="s" mode="outline">
+                <Card style={{ overflow: "hidden" }} size="s" mode="outline">
                     <img
                         style={{
-                            width: '100%',
+                            width: "100%",
                         }}
                         alt="shelter"
                         src={image}
                     />
                     <Group
-                        style={{ margin: '0 16px 8px 16px' }}
+                        style={{ margin: "0 16px 8px 16px" }}
                         separator="hide"
                     >
                         <Text
@@ -68,33 +71,33 @@ const DonationPost = ({
                                 fontSize: 16,
                                 marginTop: 4,
                             }}
-                            weight={'semibold'}
+                            weight={"semibold"}
                         >
                             {title}
                         </Text>
                         <Text
                             style={{
                                 fontSize: 14,
-                                color: 'var(--text_secondary)',
+                                color: "var(--text_secondary)",
                             }}
                         >
-                            {author} ·{' '}
+                            {author} ·{" "}
                             {isSubscribe
-                                ? 'Помощь нужна каждый месяц'
+                                ? "Помощь нужна каждый месяц"
                                 : `Закончится через ${Math.floor(
                                       (date.getTime() - Date.now()) /
-                                          (1000 * 60 * 60 * 24),
+                                          (1000 * 60 * 60 * 24)
                                   )} дней`}
                         </Text>
                     </Group>
-                    <Separator style={{ margin: '8px 0 10px 0' }} />
+                    <Separator style={{ margin: "8px 0 10px 0" }} />
                     <Group
                         style={{
-                            display: 'grid',
-                            alignItems: 'center',
-                            gridTemplateColumns: 'auto 90px',
-                            gridGap: '20px',
-                            padding: '0 16px 16px 16px',
+                            display: "grid",
+                            alignItems: "center",
+                            gridTemplateColumns: "auto 90px",
+                            gridGap: "20px",
+                            padding: "0 16px 16px 16px",
                         }}
                     >
                         <InfoRow
@@ -106,7 +109,7 @@ const DonationPost = ({
                                 <Text
                                     style={{
                                         fontSize: 13,
-                                        color: 'var(--text_primary)',
+                                        color: "var(--text_primary)",
                                         marginBottom: 5,
                                     }}
                                 >
@@ -125,7 +128,7 @@ const DonationPost = ({
                                     // marginRight: 15,
                                 }
                             }
-                            mode={'outline'}
+                            mode={"outline"}
                             disabled={disabled}
                             onClick={() => {
                                 clickHandler();

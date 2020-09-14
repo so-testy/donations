@@ -16,8 +16,11 @@ import Icon28ShareOuline from "@vkontakte/icons/dist/28/share_outline";
 import Icon28View from "@vkontakte/icons/dist/24/view";
 
 const DonationDescriptionView = () => {
+    // eslint-disable-next-line no-unused-vars
     const [donation, setDonation] = useState(
-        JSON.parse(localStorage.getItem("appState")).donationList[0] || {}
+        JSON.parse(localStorage.getItem("appState")).donationList.slice(
+            -1
+        )[0] || {}
     );
 
     return (
@@ -64,7 +67,9 @@ const DonationDescriptionView = () => {
                         {donation.isSubscribe
                             ? "помощь нужна каждый месяц"
                             : `закончится через ${Math.floor(
-                                  (new Date(donation.payDate).getTime() -
+                                  (new Date(
+                                      donation.donationEndDate
+                                  ).getTime() -
                                       Date.now()) /
                                       (1000 * 60 * 60 * 24)
                               )} дней`}
@@ -84,7 +89,7 @@ const DonationDescriptionView = () => {
                                     ? "Помощь нужна каждый месяц"
                                     : `Закончится через ${Math.floor(
                                           (new Date(
-                                              donation.payDate
+                                              donation.donationEndDate
                                           ).getTime() -
                                               Date.now()) /
                                               (1000 * 60 * 60 * 24)

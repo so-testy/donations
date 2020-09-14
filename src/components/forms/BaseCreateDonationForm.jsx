@@ -1,40 +1,40 @@
-import React, { useCallback, useState } from 'react';
+import React from "react";
 
-import { Div, File, FormLayoutGroup, Select, Banner } from '@vkontakte/vkui';
+import { Div, File, FormLayoutGroup, Select, Banner } from "@vkontakte/vkui";
 
-import Icon28PictureOutline from '@vkontakte/icons/dist/28/picture_outline';
-import { Field } from 'react-final-form';
+import Icon28PictureOutline from "@vkontakte/icons/dist/28/picture_outline";
+import { Field } from "react-final-form";
 
-import BaseDonationForm from './BaseDonationForm';
-import { requiredValidator, validationHelper } from './validators';
-import InputField from '../ui/InputField';
-import TextareaField from '../ui/TextareaField';
+import BaseDonationForm from "./BaseDonationForm";
+import { requiredValidator, validationHelper } from "./validators";
+import InputField from "../ui/InputField";
+import TextareaField from "../ui/TextareaField";
 
 const styles = {
     coverLoader: {
         height: 140,
-        borderStyle: 'dashed',
-        display: 'flex',
-        justifyContent: 'center',
+        borderStyle: "dashed",
+        display: "flex",
+        justifyContent: "center",
     },
 };
 
-const toBase64 = file =>
+const toBase64 = (file) =>
     new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = () => resolve(reader.result);
-        reader.onerror = error => reject(error);
+        reader.onerror = (error) => reject(error);
     });
 
 const BaseCreateDonationForm = ({ children, submitButton, t = {} }) => {
-    const paymentOptions = [{ value: 'vkpay', title: 'Счёт VK Pay · 1234' }];
+    const paymentOptions = [{ value: "vkpay", title: "Счёт VK Pay · 1234" }];
 
     return (
         <BaseDonationForm submitButton={submitButton}>
             <Field
                 name="cover"
-                render={fieldProps => {
+                render={(fieldProps) => {
                     return fieldProps.input.value ? (
                         <Banner
                             before={
@@ -46,11 +46,11 @@ const BaseCreateDonationForm = ({ children, submitButton, t = {} }) => {
                                 <img
                                     src={fieldProps.input.value}
                                     style={{
-                                        objectFit: 'cover',
-                                        backgroundPosition: 'right bottom',
-                                        backgroundSize: '102%',
-                                        height: '140px',
-                                        backgroundColor: 'rgba(0, 0, 0, 0.1)',
+                                        objectFit: "cover",
+                                        backgroundPosition: "right bottom",
+                                        backgroundSize: "102%",
+                                        height: "140px",
+                                        backgroundColor: "rgba(0, 0, 0, 0.1)",
                                     }}
                                     alt=""
                                 />
@@ -68,8 +68,8 @@ const BaseCreateDonationForm = ({ children, submitButton, t = {} }) => {
                             controlSize="xl"
                             mode="outline"
                             style={styles.coverLoader}
-                            onChange={e => {
-                                toBase64(e.target.files[0]).then(data => {
+                            onChange={(e) => {
+                                toBase64(e.target.files[0]).then((data) => {
                                     // setCoverPreview(data);
                                     fieldProps.input.onChange(data);
                                 });
@@ -83,11 +83,11 @@ const BaseCreateDonationForm = ({ children, submitButton, t = {} }) => {
             <FormLayoutGroup top="Название сбора">
                 <Field
                     name="donationName"
-                    render={fieldProps => {
+                    render={(fieldProps) => {
                         return (
                             <InputField
                                 placeholder="Название сбора"
-                                onChange={e =>
+                                onChange={(e) =>
                                     fieldProps.input.onChange(e.target.value)
                                 }
                                 fieldProps={fieldProps}
@@ -97,15 +97,15 @@ const BaseCreateDonationForm = ({ children, submitButton, t = {} }) => {
                     validate={validationHelper(requiredValidator)}
                 />
             </FormLayoutGroup>
-            <FormLayoutGroup top={t.amount ? t.amount : 'Сумма, ₽'}>
+            <FormLayoutGroup top={t.amount ? t.amount : "Сумма, ₽"}>
                 <Field
                     name="amount"
-                    render={fieldProps => {
+                    render={(fieldProps) => {
                         return (
                             <InputField
                                 type="number"
                                 placeholder="Сколько нужно собрать?"
-                                onChange={e =>
+                                onChange={(e) =>
                                     fieldProps.input.onChange(e.target.value)
                                 }
                                 fieldProps={fieldProps}
@@ -118,11 +118,11 @@ const BaseCreateDonationForm = ({ children, submitButton, t = {} }) => {
             <FormLayoutGroup top="Цель">
                 <Field
                     name="purpose"
-                    render={fieldProps => {
+                    render={(fieldProps) => {
                         return (
                             <InputField
                                 placeholder="Например, лечение человека"
-                                onChange={e =>
+                                onChange={(e) =>
                                     fieldProps.input.onChange(e.target.value)
                                 }
                                 fieldProps={fieldProps}
@@ -135,11 +135,11 @@ const BaseCreateDonationForm = ({ children, submitButton, t = {} }) => {
             <FormLayoutGroup top="Описание">
                 <Field
                     name="description"
-                    render={fieldProps => {
+                    render={(fieldProps) => {
                         return (
                             <TextareaField
                                 placeholder="На что пойдут деньги и как они кому-то помогут?"
-                                onChange={e =>
+                                onChange={(e) =>
                                     fieldProps.input.onChange(e.target.value)
                                 }
                                 fieldProps={fieldProps}
@@ -153,14 +153,14 @@ const BaseCreateDonationForm = ({ children, submitButton, t = {} }) => {
                 <Field
                     name="paymentTarget"
                     initialValue={paymentOptions[0].value}
-                    render={fieldProps => {
+                    render={(fieldProps) => {
                         return (
                             <Select
-                                onChange={e =>
+                                onChange={(e) =>
                                     fieldProps.input.onChange(e.target.value)
                                 }
                             >
-                                {paymentOptions.map(option => (
+                                {paymentOptions.map((option) => (
                                     <option
                                         key={option.value}
                                         value={option.value}
