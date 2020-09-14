@@ -7,7 +7,7 @@ const useNavigation = (view, panel) => {
 
     const navigationCallback = useCallback(() => {
         setActiveNavigation({ view: view || activeView, panel: panel || activePanel });
-    }, [setActiveNavigation, view, panel]);
+    }, [setActiveNavigation, view, panel, activeView, activePanel]);
 
     return { navigate: navigationCallback };
 };
