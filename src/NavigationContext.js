@@ -3,7 +3,8 @@ import { createContext } from 'react';
 const NavigationContext = createContext({
     views: {},
     activeView: '',
-    setActiveNavigation: () => {},
+    activePanel: '',
+    setActiveNavigation: () => { },
 });
 
 export default NavigationContext;

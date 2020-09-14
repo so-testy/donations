@@ -24,6 +24,11 @@ const PublishDonationToFeedView = () => {
         views.createDonation.panels.donationInFeed
     );
 
+    const { navigate: goToDonationList } = useNavigation(
+        views.donations.name,
+        views.donations.panels.donationsPage,
+    );
+
     const changeMessage = (e) => {
         e.preventDefault();
 
@@ -49,7 +54,7 @@ const PublishDonationToFeedView = () => {
         <>
             <PanelHeader
                 left={
-                    <PanelHeaderButton onClick={() => {}}>
+                    <PanelHeaderButton onClick={goToDonationList}>
                         <IconDismiss fill={"var(--text_secondary)"} />
                     </PanelHeaderButton>
                 }
@@ -99,7 +104,7 @@ const PublishDonationToFeedView = () => {
                 author={"Матвей Правосудов"}
                 date={new Date(donation.donationEndDate)}
                 isSubscribe={donation.isSubscribe}
-                image={"/shelter.jpg"}
+                image={donation.cover}
                 isHiddenAuthor={true}
                 isHiddenAuthorMessage={true}
             />

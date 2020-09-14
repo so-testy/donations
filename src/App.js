@@ -43,8 +43,8 @@ function App() {
         { view: activeView, panel: activePanel },
         setActiveNavigation,
     ] = useState({
-        view: views.createDonation.name,
-        panel: views.createDonation.panels.chooseDonationPage,
+        view: views.donations.name,
+        panel: views.donations.panels.donationsPage,
     });
 
     const [appState, setAppState] = useState({});
@@ -69,6 +69,7 @@ function App() {
                 value={{
                     views,
                     activeView,
+                    activePanel,
                     setActiveNavigation,
                 }}
             >
