@@ -44,7 +44,7 @@ const DonationInFeedView = () => {
                 author={"Матвей Правосудов"}
                 date={new Date(donation.donationEndDate)}
                 isSubscribe={donation.isSubscribe}
-                image={"/shelter.jpg"}
+                image={"./shelter.jpg"}
                 isHiddenAuthorMessage={false}
             />
             <div

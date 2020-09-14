@@ -36,7 +36,7 @@ const DonationPost = ({
                     <SimpleCell
                         disabled={true}
                         description="час назад"
-                        before={<Avatar size={48} src={"/avatar.jpg"} />}
+                        before={<Avatar size={48} src={"./avatar.jpg"} />}
                         after={
                             <Icon24MoreHorizontal fill="var(--text_secondary)" />
                         }

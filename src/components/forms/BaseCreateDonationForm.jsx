@@ -63,22 +63,23 @@ const BaseCreateDonationForm = ({ children, submitButton, t = {} }) => {
                             }}
                         />
                     ) : (
-                        <File
-                            before={<Icon28PictureOutline />}
-                            controlSize="xl"
-                            mode="outline"
-                            style={styles.coverLoader}
-                            onChange={(e) => {
-                                toBase64(e.target.files[0]).then((data) => {
-                                    // setCoverPreview(data);
-                                    fieldProps.input.onChange(data);
-                                });
-                            }}
-                        >
-                            Загрузить обложку
-                        </File>
-                    );
+                            <File
+                                before={<Icon28PictureOutline />}
+                                controlSize="xl"
+                                mode="outline"
+                                style={styles.coverLoader}
+                                onChange={(e) => {
+                                    toBase64(e.target.files[0]).then((data) => {
+                                        // setCoverPreview(data);
+                                        fieldProps.input.onChange(data);
+                                    });
+                                }}
+                            >
+                                Загрузить обложку
+                            </File>
+                        );
                 }}
+                validate={validationHelper(requiredValidator)}
             />
             <FormLayoutGroup top="Название сбора">
                 <Field
