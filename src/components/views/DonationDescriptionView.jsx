@@ -31,7 +31,7 @@ const DonationDescriptionView = () => {
                     borderRadius: "15px 15px 0px 0px",
                 }}
                 alt="shelter"
-                src={"./shelter.jpg"}
+                src={donation.cover}
             />
             <Div
                 style={{
@@ -67,12 +67,12 @@ const DonationDescriptionView = () => {
                         {donation.isSubscribe
                             ? "помощь нужна каждый месяц"
                             : `закончится через ${Math.floor(
-                                  (new Date(
-                                      donation.donationEndDate
-                                  ).getTime() -
-                                      Date.now()) /
-                                      (1000 * 60 * 60 * 24)
-                              )} дней`}
+                                (new Date(
+                                    donation.donationEndDate
+                                ).getTime() -
+                                    Date.now()) /
+                                (1000 * 60 * 60 * 24)
+                            )} дней`}
                     </Text>
                 </Group>
                 <Group>
@@ -88,12 +88,12 @@ const DonationDescriptionView = () => {
                                 {donation.isSubscribe
                                     ? "Помощь нужна каждый месяц"
                                     : `Закончится через ${Math.floor(
-                                          (new Date(
-                                              donation.donationEndDate
-                                          ).getTime() -
-                                              Date.now()) /
-                                              (1000 * 60 * 60 * 24)
-                                      )} дней`}
+                                        (new Date(
+                                            donation.donationEndDate
+                                        ).getTime() -
+                                            Date.now()) /
+                                        (1000 * 60 * 60 * 24)
+                                    )} дней`}
                             </Text>
                         }
                     >
@@ -120,7 +120,7 @@ const DonationDescriptionView = () => {
                         style={{
                             paddingLeft: 0,
                         }}
-                        onClick={() => {}}
+                        onClick={() => { }}
                         before={
                             <Icon28LikeOutline
                                 style={{
@@ -144,7 +144,7 @@ const DonationDescriptionView = () => {
                         style={{
                             paddingLeft: 0,
                         }}
-                        onClick={() => {}}
+                        onClick={() => { }}
                         before={
                             <Icon28CommentOutline
                                 style={{
@@ -169,7 +169,7 @@ const DonationDescriptionView = () => {
                             flexGrow: 1,
                             paddingLeft: 0,
                         }}
-                        onClick={() => {}}
+                        onClick={() => { }}
                         before={
                             <Icon28ShareOuline
                                 style={{
@@ -194,7 +194,7 @@ const DonationDescriptionView = () => {
                         style={{
                             paddingLeft: 0,
                         }}
-                        onClick={() => {}}
+                        onClick={() => { }}
                         before={
                             <Icon28View
                                 style={{

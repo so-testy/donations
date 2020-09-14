@@ -34,9 +34,8 @@ const DonationInFeedView = () => {
                 progressPercent={50}
                 progressTitle={
                     !donation.isSubscribe
-                        ? `Собрано ${donation.amount / 2} ₽ из ${
-                              donation.amount
-                          } ₽`
+                        ? `Собрано ${donation.amount / 2} ₽ из ${donation.amount
+                        } ₽`
                         : `Собрано ${donation.amount / 2} ₽ в сентябре`
                 }
                 userMessage={donation.message}
@@ -44,7 +43,7 @@ const DonationInFeedView = () => {
                 author={"Матвей Правосудов"}
                 date={new Date(donation.donationEndDate)}
                 isSubscribe={donation.isSubscribe}
-                image={"./shelter.jpg"}
+                image={donation.cover}
                 isHiddenAuthorMessage={false}
             />
             <div
@@ -59,7 +58,7 @@ const DonationInFeedView = () => {
                     style={{
                         paddingLeft: 0,
                     }}
-                    onClick={() => {}}
+                    onClick={() => { }}
                     before={
                         <Icon28LikeOutline
                             style={{
@@ -83,7 +82,7 @@ const DonationInFeedView = () => {
                     style={{
                         paddingLeft: 0,
                     }}
-                    onClick={() => {}}
+                    onClick={() => { }}
                     before={
                         <Icon28CommentOutline
                             style={{
@@ -108,7 +107,7 @@ const DonationInFeedView = () => {
                         flexGrow: 1,
                         paddingLeft: 0,
                     }}
-                    onClick={() => {}}
+                    onClick={() => { }}
                     before={
                         <Icon28ShareOuline
                             style={{
@@ -133,7 +132,7 @@ const DonationInFeedView = () => {
                     style={{
                         paddingLeft: 0,
                     }}
-                    onClick={() => {}}
+                    onClick={() => { }}
                     before={
                         <Icon28View
                             style={{
