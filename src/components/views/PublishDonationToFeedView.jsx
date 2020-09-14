@@ -99,7 +99,7 @@ const PublishDonationToFeedView = () => {
                 author={"Матвей Правосудов"}
                 date={new Date(donation.donationEndDate)}
                 isSubscribe={donation.isSubscribe}
-                image={"/shelter.jpg"}
+                image={"./shelter.jpg"}
                 isHiddenAuthor={true}
                 isHiddenAuthorMessage={true}
             />

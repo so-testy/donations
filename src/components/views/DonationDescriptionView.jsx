@@ -31,7 +31,7 @@ const DonationDescriptionView = () => {
                     borderRadius: "15px 15px 0px 0px",
                 }}
                 alt="shelter"
-                src={"/shelter.jpg"}
+                src={"./shelter.jpg"}
             />
             <Div
                 style={{
